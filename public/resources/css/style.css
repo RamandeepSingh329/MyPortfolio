@@ -16,7 +16,7 @@ body {
 }
 
 ::selection {
-    background: #a640f5;
+    background: linear-gradient(to right, #a640f5, #9900ba);
 }
 
 p, a, h1, h2, h3, h4, h5, h6, article {
@@ -34,10 +34,11 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #9900ba;
+    background: linear-gradient(to bottom, #9900ba, #a640f5);
     border-radius: 44px;
     z-index: 1000;
 }
+
 
 .navigation {
     position: fixed;
@@ -102,6 +103,13 @@ a {
     bottom: 0;
     right: 0;
 }
+.navigation h1::before,
+.navigation h1::after,
+.navigation h1 div {
+    /* ... existing styles ... */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Add glow */
+    animation: borderGlow 2s ease infinite alternate;
+}
 
 .navigation ul {
     width: 90%;
@@ -134,6 +142,12 @@ a {
     text-decoration: none;
     border-radius: 10px;
     box-shadow: 3px 3px 5px black, -3px -3px 5px #ffffff25;
+    position: relative; /* For pseudo-element underline */
+    transition: box-shadow 0.3s ease, transform 0.2s ease; /* Add transition */
+}
+.navigation ul li a:hover {
+    box-shadow: 3px 3px 10px black, -3px -3px 10px #ffffff25, 0 0 10px #a640f5; /* Add glow */
+    transform: translateY(-2px); /* Slight lift */
 }
 
 .navigation ul li a::before,
@@ -150,16 +164,22 @@ a {
 }
 
 .navigation ul li a::after {
-    top: inherit;
+    content: '';
+    position: absolute;
+    left: 50%;
     bottom: 0;
-    left: inherit;
-    right: -100%;
+    width: 0;
+    height: 2px;
+    background: #a640f5;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
 }
 
-.navigation ul li a:hover::before,
-.navigation ul li a.active::before {
-    left: 0;
+.navigation ul li a:hover::after,
+.navigation ul li a.active::after {
+    width: 80%;
 }
+
 
 .navigation ul li a:hover::after,
 .navigation ul li a.active::after {
@@ -176,6 +196,18 @@ a {
     overflow-y: hidden;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    background: linear-gradient(45deg, #161b22, #0d1117, #161b22);
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease infinite alternate;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
 .layer {
@@ -188,6 +220,7 @@ a {
     box-shadow: 0 0 5px rgba(0, 0, 0, .5),
         0 0 10px rgba(0, 0, 0, .5),
         0 0 20px rgba(0, 0, 0, .5);
+        
 }
 
 .layer .main {

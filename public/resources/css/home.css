@@ -15,6 +15,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.5s ease;
+}
+.canvas_container:hover {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
 .canvas_container canvas {
@@ -37,7 +42,13 @@
     width: 400px;
     height: 250px;
     background: url("../img/mypic.png") no-repeat top left;
-    background-size: cover;          
+    background-size: cover;   
+    transform: perspective(600px) rotateY(5deg);
+    transition: transform 0.3s ease;
+       
+}
+.content-for-home .img-container:hover {
+    transform: perspective(600px) rotateY(0deg);
 }
 
 .content-for-home .img-container img {
@@ -58,6 +69,8 @@
 .content-for-home .social-icons .s-icon {
     position: relative;
     margin: 10px 25px;
+    text-shadow: 0 0 10px whitesmoke, 0 0 20px whitesmoke; /* Enhanced glow */
+
 }
 
 .content-for-home .social-icons .s-icon a {
@@ -156,6 +169,12 @@
     background: #384551;
     z-index: -1;
     transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    background: linear-gradient(45deg, #384551, #4a5a6a, #384551); /* Gradient */
+    background-size: 200% 200%;
+    animation: gradientBorder 5s linear infinite;
+    transform: perspective(400px) rotateX(5deg);
+    transition: transform 0.3s ease, clip-path 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+
 }
 
 .side-nav button::before {

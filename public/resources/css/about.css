@@ -35,6 +35,8 @@ html {
     transform: translate(-50%, -50%);
     z-index: 2;
     animation: rotate 5s linear 0s infinite forwards;
+    box-shadow: 0 0 10px #b105ca;
+    animation: rotate 5s linear 0s infinite forwards, glow 2s ease-in-out infinite alternate;
 }
 
 @keyframes rotate {
@@ -54,6 +56,8 @@ html {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    box-shadow: 0 0 10px #d0154e;
+    animation: pulse 3s ease-in-out infinite alternate;
 }
 
 .triangle {
@@ -66,6 +70,7 @@ html {
     border-bottom: 20px solid transparent;
     z-index: 1;
     animation: up_down 5s ease-in-out 0s infinite forwards;
+    box-shadow: 0 0 10px #21d5ab67;
 }
 
 @keyframes up_down {
@@ -90,6 +95,24 @@ html {
     border-bottom: 20px solid transparent;
     transform: translate(-90%, -30%);
     z-index: -1;
+    box-shadow: 0 0 10px #267ff4;
+}
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 10px #b105ca;
+    }
+    50% {
+        box-shadow: 0 0 20px #b105ca;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 .dots {
@@ -119,6 +142,16 @@ html {
     stroke-dasharray: 3400px;
     stroke-dashoffset: 3400px;
     animation: dash 8s ease-in-out 0s 1 forwards;
+    stroke: linear-gradient(to right, #1c2635, #26384d);
+    animation: dash 8s ease-in-out 0s 1 forwards, waveMove 5s linear infinite alternate;
+}
+@keyframes waveMove {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
+    }
 }
 
 .wave.opposite {
@@ -160,6 +193,12 @@ html {
     position: relative;
     width: 100%;
     height: 100vh;
+    transform: perspective(600px) rotateY(2deg);
+    transition: transform 0.3s ease;
+
+}
+.wrapper .face:hover {
+    transform: perspective(600px) rotateY(0deg);
 }
 
 .wrapper .face.face1 {
@@ -206,6 +245,34 @@ html {
     font-weight: bold;
     outline: none;
     width: 35%;
+    position: relative;
+    overflow: hidden;
+}
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #384551, #4a5a6a, #384551);
+    background-size: 200% 200%;
+    animation: gradientBorder 5s linear infinite;
+    z-index: -1;
+    transform: perspective(400px) rotateX(5deg);
+    transition: transform 0.3s ease;
+}
+.button:hover::before {
+    transform: perspective(400px) rotateX(0deg);
+}
+
+@keyframes gradientBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
 .button.download {
@@ -244,11 +311,30 @@ html {
     display: inline-block;
     border-radius: 10px;
     transition: 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    position: relative;
+
+}
+
+.about_nav ul li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: dodgerblue;
+    transition: width 0.3s ease;
+}
+.about_nav ul li a:hover::after,
+.about_nav ul li a.active::after {
+    width: 80%;
 }
 
 .about_nav ul li a:hover {
-    color: dodgerblue;
+    box-shadow: 0 0 10px dodgerblue;
 }
+
 
 .about_nav ul li a.active {
     color: dodgerblue;
@@ -341,6 +427,9 @@ html {
     width: 90%;
     background: white;
     border-radius: 100px;
+    background: linear-gradient(to right, #ffffff, #d0d0d0);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+
 }
 
 /* EXPERIENCE */
@@ -383,6 +472,10 @@ html {
     border-radius: 15px;
     padding: 15px;
     box-shadow: inset 5px 5px 10px black, inset -3px -3px 5px #ffffff25;
+    transition: box-shadow 0.3s ease;
+}
+.cover:hover {
+    box-shadow: inset 5px 5px 15px black, inset -3px -3px 8px #ffffff25;
 }
 
 .cover::before {
