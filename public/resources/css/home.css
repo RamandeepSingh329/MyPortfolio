@@ -1,8 +1,10 @@
+/* Home Container */
 .home {
     background-color: #0d1117;
     z-index: 2;
 }
 
+/* Canvas Container */
 .canvas_container {
     position: fixed;
     top: 0;
@@ -18,6 +20,7 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.5s ease;
 }
+
 .canvas_container:hover {
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
@@ -28,6 +31,7 @@
     left: 0;
 }
 
+/* Content Section */
 .content-for-home {
     position: relative;
     width: 100%;
@@ -38,23 +42,105 @@
     flex-direction: column;
 }
 
-.content-for-home .img-container {
-    width: 400px;
-    height: 250px;
-    background: url("../img/mypic.png") no-repeat top left;
-    background-size: cover;   
+/* 🔥 Glowing Header */
+.content-for-home h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #00ffe7;
+    text-align: center;
+    margin: 20px 0;
+    text-shadow:
+        0 0 5px #00ffe7,
+        0 0 10px #00ffe7,
+        0 0 20px #00ffe7,
+        0 0 40px #00ffe7,
+        0 0 80px #00ffe7;
+    animation: flickerGlow 2s infinite;
     transform: perspective(600px) rotateY(5deg);
     transition: transform 0.3s ease;
-       
 }
-.content-for-home .img-container:hover {
+
+.content-for-home h1:hover {
     transform: perspective(600px) rotateY(0deg);
 }
 
-.content-for-home .img-container img {
-    object-fit: cover;
+@keyframes flickerGlow {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+    }
+    20%, 24%, 55% {
+        opacity: 0.5;
+    }
 }
 
+/* Enhanced Image Container */
+.content-for-home .img-container {
+    position: relative;
+    width: 400px;
+    height: 250px;
+    background: url("../img/mypic.png") no-repeat center center;
+    background-size: cover;
+    transform: perspective(800px) rotateY(5deg);
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 4px 25px rgba(0, 255, 255, 0.7);
+}
+
+/* On hover: 3D Rotation and glowing shadow */
+.content-for-home .img-container:hover {
+    transform: perspective(800px) rotateY(0deg) scale(1.05);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.9), 0 10px 30px rgba(0, 255, 255, 0.8);
+}
+
+/* Image inside the container */
+.content-for-home .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+/* Optional: Add text overlay on image */
+.content-for-home .img-container .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.content-for-home .img-container:hover .overlay {
+    opacity: 1;
+}
+
+/* Gradient overlay on hover */
+.content-for-home .img-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.5), rgba(0, 0, 0, 0.5));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 15px;
+}
+
+.content-for-home .img-container:hover::before {
+    opacity: 1;
+}
+
+
+/* Social Icons */
 .content-for-home .social-icons {
     position: relative;
     width: 100%;
@@ -69,16 +155,14 @@
 .content-for-home .social-icons .s-icon {
     position: relative;
     margin: 10px 25px;
-    text-shadow: 0 0 10px whitesmoke, 0 0 20px whitesmoke; /* Enhanced glow */
-
+    text-shadow: 0 0 10px whitesmoke, 0 0 20px whitesmoke;
 }
 
 .content-for-home .social-icons .s-icon a {
     color: whitesmoke;
     text-decoration: none;
     transition: 0.5s;
-   
-        text-shadow: 0 0 25px whitesmoke;
+    text-shadow: 0 0 25px whitesmoke;
 }
 
 .content-for-home .social-icons .s-icon a i {
@@ -104,6 +188,7 @@
     color: dodgerblue;
 }
 
+/* Side Navigation */
 .side-nav {
     position: absolute;
     right: 20px;
@@ -158,6 +243,7 @@
     opacity: 1;
 }
 
+/* Side Button Gradient Borders */
 .side-nav button::before,
 .side-nav button::after {
     content: "";
@@ -166,15 +252,12 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: #384551;
+    background: linear-gradient(45deg, #384551, #4a5a6a, #384551);
     z-index: -1;
-    transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    background: linear-gradient(45deg, #384551, #4a5a6a, #384551); /* Gradient */
     background-size: 200% 200%;
     animation: gradientBorder 5s linear infinite;
     transform: perspective(400px) rotateX(5deg);
     transition: transform 0.3s ease, clip-path 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-
 }
 
 .side-nav button::before {
@@ -189,6 +272,12 @@
     clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
 }
 
+@keyframes gradientBorder {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Responsive Media Queries */
 @media (max-width: 768px) {
     .canvas_container {
         width: 100%;

@@ -64,52 +64,82 @@ a {
 
 .navigation h1 {
     position: relative;
-    font-size: 30px;
+    font-size: 32px;
     text-transform: uppercase;
-    padding: 15px;
+    padding: 20px 40px;
+    color: #00fff7;
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-align: center;
     cursor: pointer;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 255, 247, 0.4);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    z-index: 1;
+    backdrop-filter: blur(5px);
 }
 
+.navigation h1:hover {
+    transform: scale(1.05) rotateX(1deg);
+    box-shadow: 0 0 25px rgba(0, 255, 247, 0.9);
+}
+
+/* Vertical Bars */
 .navigation h1::before,
 .navigation h1::after {
     content: '';
     position: absolute;
+    width: 6px;
+    height: 30px;
+    background: linear-gradient(180deg, #00fff7, #0ff);
+    box-shadow: 0 0 12px #00fff7;
+    animation: borderPulse 2s infinite alternate;
+    z-index: -1;
+}
+
+.navigation h1::before {
     top: 0;
     left: 0;
-    background: #fff;
-    width: 5px;
-    height: 25px;
 }
 
 .navigation h1::after {
-    top: inherit;
-    left: inherit;
-    right: 0;
     bottom: 0;
+    right: 0;
 }
 
+/* Horizontal Glowing Bars */
 .navigation h1 div {
     position: absolute;
+    height: 6px;
+    width: 200%;
+    background: linear-gradient(to right, #00fff7, #0ff);
+    box-shadow: 0 0 12px #00fff7;
+    animation: borderPulse 2s infinite alternate;
+    z-index: -1;
+}
+
+.navigation h1 div:first-child {
     top: 0;
     left: 0;
-    width: 200%;
-    height: 5px;
-    background: #fff;
 }
 
 .navigation h1 div:nth-child(2) {
-    top: inherit;
-    left: inherit;
     bottom: 0;
-    right: 0;
+    left: 0;
 }
-.navigation h1::before,
-.navigation h1::after,
-.navigation h1 div {
-    /* ... existing styles ... */
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Add glow */
-    animation: borderGlow 2s ease infinite alternate;
+
+/* Pulse Glow Keyframes */
+@keyframes borderPulse {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 255, 247, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(0, 255, 247, 1);
+    }
 }
+
 
 .navigation ul {
     width: 90%;
