@@ -1,25 +1,29 @@
 :root {
-    --bg-image: url("../img/classicimg.jpg");
-    --bg-color: #0d1117;
-    --text-color: #adadad;
-    --light-text-color: #ccc;
-    --accent-color-1: #c017bb;
-    --accent-color-2: #e5242a;
-    --box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    --border-color: rgba(255, 255, 255, 0.1);
-    --input-bg: rgba(255, 255, 255, 0.05); /* Slightly translucent input background */
-    --submit-bg: rgba(0, 0, 0, 0.329);
-    --submit-light: rgba(255, 255, 255, 0.199);
+    --bg-color: #0d1117; /* Dark background color */
+    --text-color: #e0e0e0; /* Light grey text color for contrast */
+    --light-text-color: #ccc; /* Lighter text color */
+    --accent-color-1: #c017bb; /* Neon pink accent */
+    --accent-color-2: #e5242a; /* Neon red accent */
+    --box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    --border-color: rgba(255, 255, 255, 0.1); /* Lighter borders for dark theme */
+    --input-bg: rgba(255, 255, 255, 0.1); /* Slightly translucent input background */
+    --submit-bg: rgba(0, 0, 0, 0.329); /* Subtle background for submit buttons */
+    --submit-light: rgba(255, 255, 255, 0.199); /* Light hover effect on submit */
 }
 
+body {
+    background-color: var(--bg-color); /* Dark background for the entire body */
+    color: var(--text-color); /* Apply light text color */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container (center of the page) */
 .layer6 {
-    background: var(--bg-image), var(--bg-color);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-blend-mode: difference;
-    filter: invert(1);
-    animation: bg-pulse 10s ease-in-out infinite alternate; /* Subtle background pulse */
+    background-color: var(--bg-color); /* Use solid dark background */
+    filter: invert(0); /* No image filter needed in dark theme */
+    animation: bg-pulse 10s ease-in-out infinite alternate;
 }
 
 @keyframes bg-pulse {
@@ -28,7 +32,7 @@
     }
 }
 
-
+/* Contact section */
 .layer6 .contact_us {
     position: relative;
     display: flex;
@@ -36,101 +40,90 @@
     align-items: center;
     width: 100%;
     height: 100vh;
-    color: white;
-    perspective: 1200px; /* Increased perspective for 3D elements */
+    color: var(--text-color);
+    perspective: 1200px; /* 3D effect */
 }
 
+/* Info box container */
 .info_container {
     position: relative;
     transform-style: preserve-3d;
 }
+
+/* Info section with hover effect */
 .info {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px; /* Increased padding */
+    padding: 20px;
     transform-style: preserve-3d;
     perspective: 1000px;
     border-top: 2px solid var(--border-color);
     border-bottom: 2px solid var(--border-color);
     box-shadow: var(--box-shadow);
-    margin: 20px 0; /* Increased margin */
-    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy transition */
+    margin: 20px 0;
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.6); /* Dark background for info box */
 }
 
 .info:hover {
-    transform: translateY(-10px) rotateX(5deg) rotateY(5deg) scale(1.05); /* 3D hover effect */
+    transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.08);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-
-
+/* Neon glow effect on info */
 .info::after {
     position: absolute;
     content: '';
-    top: -5px; /* Extend glow slightly */
+    top: -5px;
     left: -5px;
     width: calc(100% + 10px);
     height: calc(100% + 10px);
-    filter: blur(8px); /* Increase blur */
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1)); /* Gradient glow */
+    filter: blur(10px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
     z-index: -1;
 }
 
+/* Icon styling with neon effect */
 .info i {
     text-align: center;
     display: block;
-    font-size: 35px; /* Increased icon size */
+    font-size: 40px;
     padding: 12px;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    transform: translateZ(20px); /* Increased Z translation */
-    line-height: 50px;
+    width: 60px;
+    height: 60px;
+    transform: translateZ(20px);
+    line-height: 60px;
     background: linear-gradient(0deg, var(--accent-color-1), var(--accent-color-2));
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .info:hover i {
-    transform: translateZ(40px);
-    transition: 0.4s 0.1s;
-    transform: translateZ(50px) rotate(360deg); /* Rotate icon on hover */
+    transform: translateZ(40px) rotate(360deg);
+    background: linear-gradient(0deg, var(--accent-color-2), var(--accent-color-1));
 }
 
-.info a {
-    transform: translateZ(0px);
-    color: dodgerblue;
-    text-decoration: none;
-    transition: 0.4s;
-    transform: translateZ(0px);
-    color: dodgerblue;
-    text-decoration: none;
-    transition: transform 0.5s ease, color 0.3s ease;
-}
-
-.info:hover a {
-    transform: translateZ(75px);
-    transition: 0.4s 0.2s;
-    transform: translateZ(80px);
-    color: lightskyblue; /* Change color on hover */
-}
-
+/* Name section inside info box */
 .info .iname {
     text-align: center;
-    font-size: 22px; /* Increased font size */
+    font-size: 24px;
     font-style: italic;
-    transition: font-size 0.4s ease, opacity 0.4s ease, color 0.3s ease;
+    transition: font-size 0.3s ease, opacity 0.3s ease, color 0.3s ease;
     color: #acacac;
 }
 
 .info:hover .iname {
-    font-size: 40px;
-    font-weight: 900;
-    opacity: 0.3;
+    font-size: 36px;
+    font-weight: 800;
+    opacity: 1;
     color: #ddd;
 }
 
+/* Form styling */
 form {
     position: relative;
     display: flex;
@@ -144,38 +137,50 @@ form h1 {
     color: var(--light-text-color);
     text-align: center;
     transform: translateZ(20px);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
 }
 
+/* Input field styles */
 form .inp_field {
     position: relative;
-    width: 400px; /* Increased width */
+    width: 400px;
     height: 70px;
-    border-radius: 100px;
+    border-radius: 50px;
     transform-style: preserve-3d;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
-    margin: 15px 0;
+    margin: 20px 0;
     border-top: 2px solid var(--border-color);
     border-bottom: 2px solid var(--border-color);
     box-shadow: var(--box-shadow);
-    transition: transform 0.4s ease;
-}
-form .inp_field:hover {
-    transform: translateY(-5px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+form .inp_field:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Input field text */
 form .inp_field input {
-    width: 320px; /* Increased input width */
+    width: 320px;
     font-size: 22px;
     font-weight: 600;
     border: none;
     background: var(--input-bg);
     outline: none;
-    overflow: visible;
     color: var(--text-color);
+    border-radius: 50px;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+}
+
+form .inp_field input:focus {
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.2); /* Darken background on focus */
+    border: 1px solid #00ffe7; /* Neon border */
 }
 
 .inp_field input::placeholder {
@@ -183,32 +188,7 @@ form .inp_field input {
     color: #999;
 }
 
-.inp_field i {
-    color: #ababab;
-    transform: translateZ(10px);
-}
-
-.message {
-    width: 400px;
-    outline: none;
-    border: none;
-    border-radius: 25px;
-    padding: 15px;
-    font-size: 20px;
-    font-family: "Montserrat";
-    background: var(--input-bg);
-    border-top: 2px solid var(--border-color);
-    border-bottom: 2px solid var(--border-color);
-    box-shadow: var(--box-shadow);
-    color: var(--text-color);
-    font-weight: 500;
-    resize: vertical;
-    transition: transform 0.4s ease;
-}
-.message:hover {
-    transform: translateY(-5px);
-}
-
+/* Submit button styling */
 .submit {
     position: relative;
     font-size: 40px;
@@ -216,72 +196,18 @@ form .inp_field input {
     margin: 30px 0;
     outline: none;
     border: none;
-    background: rgba(0, 0, 0, 0.329);
-    text-decoration: none;
+    background: var(--submit-bg);
     color: #ddd;
     border-top: 2px solid rgba(255, 255, 255, 0.1);
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    border-radius: 100px;
-    overflow: hidden;
+    border-radius: 50px;
     cursor: pointer;
-    transition: 0.25s;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .submit:hover {
-    letter-spacing: 3px;
-}
-
-.submit::before {
-    content: "";
-    position: absolute;
-    bottom: -10%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    width: 30px;
-    height: 40px;
-    /* background: #b2302c; */
-    filter: blur(10px);
-    z-index: -1;
-    transition: 0.5s;
-}
-
-.submit::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 30px;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.199);
-    transform: skew(45deg) translate(-20px, 0);
-    transition: 0.5s;
-}
-
-.submit:hover::after {
-    transform: skew(45deg) translate(200px, 0);
-}
-
-.submit:hover::before {
-    height: 80%;
-    bottom: 0;
-    width: 80%;
-    border-radius: 30px;
-    transition-delay: 0.25s;
-}
-
-#map {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    filter: invert(1);
-}
-
-@media (max-width: 632px) {
-    .layer6 .contact_us {
-        justify-content: center;
-        flex-direction: column;
-    }
+    background: rgba(0, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
 }
