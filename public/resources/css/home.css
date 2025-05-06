@@ -40,6 +40,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* 🔥 Glowing Header */
@@ -77,15 +79,28 @@
 .content-for-home .img-container {
     position: relative;
     width: 400px;
+    max-width: 90vw; /* Responsive width for smaller screens */
     height: 250px;
-    background: url("../img/mypic.png") no-repeat center center;
+    background: url("weblogo.png") no-repeat center center; /* Absolute path recommended */
     background-size: cover;
+    background-position: center;
     transform: perspective(800px) rotateY(5deg);
     transition: transform 0.5s ease, box-shadow 0.3s ease;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 4px 25px rgba(0, 255, 255, 0.7);
 }
+
+/* Mobile optimization */
+@media (max-width: 480px) {
+    .content-for-home .img-container {
+        width: 90vw;
+        height: auto;
+        aspect-ratio: 4 / 3; /* Maintain aspect ratio */
+        background-attachment: scroll; /* Avoid fixed background on mobile */
+    }
+}
+
 
 /* On hover: 3D Rotation and glowing shadow */
 .content-for-home .img-container:hover {
@@ -138,7 +153,6 @@
 .content-for-home .img-container:hover::before {
     opacity: 1;
 }
-
 
 /* Social Icons */
 .content-for-home .social-icons {
@@ -272,16 +286,16 @@
     clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
 }
 
-@keyframes gradientBorder {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-
 /* Responsive Media Queries */
 @media (max-width: 768px) {
     .canvas_container {
         width: 100%;
         margin-left: 0;
+    }
+
+    /* Adjust Header Size */
+    .content-for-home h1 {
+        font-size: 2.5rem;  /* Smaller header */
     }
 }
 
